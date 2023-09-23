@@ -15,4 +15,19 @@ public class DomainMarcaService implements MarcaService{
     public List<Marca> findAll() {
         return marcaRepository.getAll();
     }
+
+    @Override
+    public Marca findById(String id) {
+        return marcaRepository.getById(id);
+    }
+
+    @Override
+    public Marca findByNombre(String nombre) {
+        return marcaRepository.getByNombre(nombre);
+    }
+
+    @Override
+    public Marca save(Marca marca) {
+        return marcaRepository.save(marca);
+    }
 }

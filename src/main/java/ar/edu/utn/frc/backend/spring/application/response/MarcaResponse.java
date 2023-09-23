@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class MarcaResponse {
     private String id;
-
     private String nombre;
 
     public MarcaResponse(String id, String nombre) {

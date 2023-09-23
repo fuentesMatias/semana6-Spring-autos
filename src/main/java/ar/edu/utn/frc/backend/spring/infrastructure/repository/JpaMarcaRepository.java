@@ -24,4 +24,37 @@ public class JpaMarcaRepository implements MarcaRepository {
 			.map(MarcaEntity::toMarca)
 			.toList();
 	}
+
+	@Override
+	public Marca getById(String id) {
+		return marcaDao.findById(id)
+			.map(MarcaEntity::toMarca)
+			.orElse(null);
+	}
+
+	@Override
+	public Marca save(Marca marca) {
+		return marcaDao.save(MarcaEntity.from(marca))
+			.toMarca();
+	}
+
+	@Override
+	public Marca delete(String id) {
+		return null;
+	}
+
+	@Override
+	public Marca update(Marca marca) {
+		return null;
+	}
+
+	@Override
+	public Marca getByNombre(String nombre) {
+		return marcaDao.findAll()
+				.stream()
+				.filter(marcaEntity -> marcaEntity.getNombre().equalsIgnoreCase(nombre))
+				.map(MarcaEntity::toMarca)
+				.findFirst()
+				.orElse(null);
+	}
 }

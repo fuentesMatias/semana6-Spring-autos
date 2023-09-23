@@ -6,4 +6,10 @@ import java.util.List;
 
 public interface MarcaService {
     List<Marca> findAll();
+
+    Marca findById(String id);
+
+    Marca findByNombre(String nombre);
+
+    Marca save(Marca marca);
 }

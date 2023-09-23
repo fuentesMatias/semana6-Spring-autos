@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 
 import ar.edu.utn.frc.backend.spring.domain.model.Marca;
 import lombok.Data;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
 @Entity
@@ -16,6 +17,7 @@ import lombok.experimental.FieldDefaults;
 public class MarcaEntity {
 	@Id
 	private String id;
+	@Getter // lombok para tener el metodo get
 	@Column(name = "NOMBRE")
 	private String nombre;
 
