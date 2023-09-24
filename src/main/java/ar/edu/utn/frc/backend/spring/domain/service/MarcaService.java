@@ -12,4 +12,6 @@ public interface MarcaService {
     Marca findByNombre(String nombre);
 
     Marca save(Marca marca);
+
+    void delete(String id);
 }

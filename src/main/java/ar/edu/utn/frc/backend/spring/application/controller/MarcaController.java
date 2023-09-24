@@ -56,4 +56,18 @@ public class MarcaController {
         Marca savedMarca = marcaService.save(marca);
         return ResponseEntity.status(HttpStatus.OK).body(savedMarca);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable String id) {
+        if (marcaService.findById(id) == null) {
+            // Si la marca no existe, devuelve un error 400 (Bad Request)
+            String errorMsg = "No se pudo eliminar la marca. No existe una marca con el mismo ID.";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMsg);
+        }
+
+        // Si la marca existe, elimínala y devuelve un éxito 200 (OK)
+        marcaService.delete(id);
+        String successMsg = "Se eliminó la marca con éxito.";
+        return ResponseEntity.status(HttpStatus.OK).body(successMsg);
+    }
 }

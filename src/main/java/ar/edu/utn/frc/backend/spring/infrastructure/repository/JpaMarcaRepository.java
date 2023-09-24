@@ -39,8 +39,8 @@ public class JpaMarcaRepository implements MarcaRepository {
 	}
 
 	@Override
-	public Marca delete(String id) {
-		return null;
+	public void delete(String id) {
+		marcaDao.deleteById(id);
 	}
 
 	@Override

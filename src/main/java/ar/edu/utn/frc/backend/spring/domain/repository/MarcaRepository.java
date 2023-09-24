@@ -11,7 +11,7 @@ public interface MarcaRepository {
 
 	Marca save(Marca marca);
 
-	Marca delete(String id);
+	void delete(String id);
 
 	Marca update(Marca marca);
 
