@@ -57,7 +57,7 @@ public class MarcaController {
         return ResponseEntity.status(HttpStatus.OK).body(savedMarca);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") // No funciona por integridad relacional
     public ResponseEntity<?> delete(@PathVariable String id) {
         if (marcaService.findById(id) == null) {
             // Si la marca no existe, devuelve un error 400 (Bad Request)

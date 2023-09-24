@@ -6,4 +6,10 @@ import java.util.List;
 
 public interface TipoAutoService {
     List<TipoAuto> findAll();
+
+    TipoAuto findById(String id);
+
+    TipoAuto save(TipoAuto tipoAuto);
+
+
 }

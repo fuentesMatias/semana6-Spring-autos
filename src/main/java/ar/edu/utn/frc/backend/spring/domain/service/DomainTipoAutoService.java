@@ -17,4 +17,14 @@ public class DomainTipoAutoService implements TipoAutoService{
     public List<TipoAuto> findAll() {
         return tipoAutoRepository.getAll();
     }
+
+    @Override
+    public TipoAuto findById(String id) {
+        return tipoAutoRepository.getById(id);
+    }
+
+    @Override
+    public TipoAuto save(TipoAuto tipoAuto) {
+        return tipoAutoRepository.save(tipoAuto);
+    }
 }

@@ -24,4 +24,14 @@ public class JpaTipoAutoRepository implements TipoAutoRepository {
 			.map(TipoAutoEntity::toTipoAuto)
 			.collect(Collectors.toList());
 	}
+
+	@Override
+	public TipoAuto getById(String id) {
+		return tipoAutoDao.findById(id).map(TipoAutoEntity::toTipoAuto).orElse(null);
+	}
+
+	@Override
+	public TipoAuto save(TipoAuto tipoAuto) {
+		return tipoAutoDao.save(TipoAutoEntity.from(tipoAuto)).toTipoAuto();
+	}
 }

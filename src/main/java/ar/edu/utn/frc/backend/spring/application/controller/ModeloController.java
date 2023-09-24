@@ -20,10 +20,22 @@ public class ModeloController {
 
     @GetMapping("/{id}")
     public Modelo modelo(@PathVariable("id")String id) {
-        //si el id es null tome por defecto 1
+        //si id es null tome por defecto 1
         if(id == null) {
             id = "1";
         }
-        return modeloService.get(id);
+        return modeloService.getById(id);
     }
+
+    @GetMapping
+    public List<Modelo> modelo() {
+        return modeloService.findAll();
+    }
+
+    @PostMapping
+    public Modelo save(@RequestBody Modelo modelo) {
+        return modeloService.save(modelo);
+    }
+
+
 }
