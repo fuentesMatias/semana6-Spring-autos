@@ -10,4 +10,6 @@ public interface TipoAutoRepository {
     TipoAuto getById(String id);
 
     TipoAuto save(TipoAuto tipoAuto);
+
+
 }

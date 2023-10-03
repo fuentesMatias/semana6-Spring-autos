@@ -3,6 +3,7 @@ package ar.edu.utn.frc.backend.spring;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class ModeloTest {
 				new TipoAuto("dfdb092b-6e6b-466e-bf32-d1344eb645bb", "Convertible")
 			)
 		);
-		final Modelo modelo = modeloRepository.get("335609c3-0dff-4913-84a9-7c8271a361ab");
+		final Optional<Modelo> modelo = modeloRepository.get("335609c3-0dff-4913-84a9-7c8271a361ab");
 
 		assertEquals(modeloEsperado, modelo);
 	}

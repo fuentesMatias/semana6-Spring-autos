@@ -1,8 +1,10 @@
 package ar.edu.utn.frc.backend.spring.infrastructure.repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import ar.edu.utn.frc.backend.spring.application.request.ActualizarAutoRequest;
 import org.springframework.stereotype.Component;
 
 import ar.edu.utn.frc.backend.spring.domain.model.Auto;
@@ -26,21 +28,30 @@ public class JpaAutoRepository implements AutoRepository {
 			.collect(Collectors.toList());
 	}
 
-	@Override public void save(Auto auto) {
+	@Override public Auto save(Auto auto) {
 		autoDao.save(new AutoEntity(
 			auto.getId(),
 			auto.getChasis().getNumero(),
 			ModeloEntity.from(auto.getModelo())
 		));
+		return auto;
 	}
 
 	@Override
-	public Auto getById(String id) {
-		return autoDao.findAll()
-			.stream()
-			.map(AutoEntity::toAuto)
-			.filter(autoEntity -> autoEntity.getId().equals(id))
-			.findFirst()
-			.orElse(null);
+	public Optional<Auto> getById(String id) {
+		return autoDao.findById(id)
+				.map(AutoEntity::toAuto);
+	}
+
+	@Override
+	public Optional<Auto> delete(String id) {
+		autoDao.findById(id).ifPresent(autoDao::delete);
+		return autoDao.findById(id)
+				.map(AutoEntity::toAuto);
+	}
+
+	@Override
+	public Optional<Auto> update(String id, ActualizarAutoRequest autoRequest) {
+		return Optional.empty();
 	}
 }

@@ -25,7 +25,7 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public AutoService autoService(AutoRepository autoRepository) {
-        return new DomainAutoService(autoRepository);
+    public AutoService autoService(AutoRepository autoRepository,ModeloService modeloService) {
+        return new DomainAutoService(autoRepository,modeloService);
     }
 }

@@ -1,5 +1,6 @@
 package ar.edu.utn.frc.backend.spring.infrastructure.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ar.edu.utn.frc.backend.spring.domain.model.Modelo;
@@ -8,24 +9,30 @@ import ar.edu.utn.frc.backend.spring.infrastructure.dao.JpaModeloDao;
 import ar.edu.utn.frc.backend.spring.infrastructure.entity.ModeloEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class JpaModeloRepository implements ModeloRepository {
-	private final JpaModeloDao modeloDao;
+	@Autowired
+	private JpaModeloDao modeloDao;
 
+	//@Autowired
 	public JpaModeloRepository(JpaModeloDao modeloDao) {
 		this.modeloDao = modeloDao;
 	}
 
 	@Override
-	public Modelo get(String id) {
-		final ModeloEntity modeloEntity = modeloDao.findById(id).orElseThrow();
-		return modeloEntity.toModelo();
+	public Optional<Modelo> get(String id) {
+		return modeloDao.findById(id)
+				.map(ModeloEntity::toModelo);
 	}
 
 	@Override
 	public List<Modelo> findAll() {
-		return modeloDao.findAll().stream().map(ModeloEntity::toModelo).toList();
+		return modeloDao.findAll()
+				.stream()
+				.map(ModeloEntity::toModelo)
+				.toList();
 	}
 
 	@Override

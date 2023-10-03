@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ar.edu.utn.frc.backend</groupId>
-	<artifactId>apunte-12-ejercicios</artifactId>
+	<artifactId>apunte-12-ejercicios-autos-v1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>apunte-12-ejercicios</name>
 	<description>Demo project for Spring Boot</description>

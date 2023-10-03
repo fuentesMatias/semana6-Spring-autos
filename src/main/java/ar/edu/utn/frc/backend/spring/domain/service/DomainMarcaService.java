@@ -30,9 +30,4 @@ public class DomainMarcaService implements MarcaService{
     public Marca save(Marca marca) {
         return marcaRepository.save(marca);
     }
-
-    @Override
-    public void delete(String id) {
-        marcaRepository.delete(id);
-    }
 }

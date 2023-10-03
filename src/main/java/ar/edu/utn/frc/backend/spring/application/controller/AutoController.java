@@ -1,8 +1,10 @@
 package ar.edu.utn.frc.backend.spring.application.controller;
 
+import ar.edu.utn.frc.backend.spring.application.request.CrearAutoRequest;
 import ar.edu.utn.frc.backend.spring.domain.model.Auto;
 import ar.edu.utn.frc.backend.spring.domain.model.Modelo;
 import ar.edu.utn.frc.backend.spring.domain.service.AutoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,13 +20,21 @@ public class AutoController {
     }
 
     @GetMapping("/{id}")
-    public Auto autoId(@PathVariable("id")String id){
-        return autoService.buscarAuto(id);
+    public ResponseEntity<?> autoId(@PathVariable("id")String id){
+        try {
+            return ResponseEntity.ok(autoService.buscarAuto(id));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
     }
 
     @PostMapping
-    public String registrarAuto(@RequestBody Modelo modelo){
-         return  autoService.crearAuto(modelo);
+    public ResponseEntity<?> registrarAuto(@RequestBody CrearAutoRequest request){
+        try {
+             return ResponseEntity.ok(autoService.crearAuto(request.getModeloId()));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
     }
 
     @GetMapping
@@ -33,5 +43,14 @@ public class AutoController {
                 .stream()
                 .map(auto -> new Auto(auto.getId(), auto.getModelo(), auto.getChasis()))
                 .collect(Collectors.toList());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAuto(@PathVariable("id")String id){
+        try {
+            return ResponseEntity.ok(autoService.deleteAuto(id));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
     }
 }

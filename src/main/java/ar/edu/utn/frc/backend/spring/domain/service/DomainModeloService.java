@@ -4,6 +4,8 @@ import ar.edu.utn.frc.backend.spring.domain.model.Modelo;
 import ar.edu.utn.frc.backend.spring.domain.repository.ModeloRepository;
 
 import java.util.List;
+import java.util.Optional;
+
 
 public class DomainModeloService implements ModeloService{
 
@@ -15,7 +17,7 @@ public class DomainModeloService implements ModeloService{
 
     @Override
     public Modelo getById(String id) {
-        return modeloRepository.get(id);
+        return modeloRepository.get(id).orElseThrow(()-> new RuntimeException("Modelo no encontrado"));
     }
 
     @Override
